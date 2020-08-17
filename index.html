@@ -1,0 +1,397 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Hard Rock Solution - Song Lyric App</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <!-- Custom css -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <nav class="navbar  navbar-dark my-3">
+            <a class="navbar-brand" href="#">
+                <img src="images/logo.png" alt="Hard Rock Solution">
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavId" aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation">
+                <img src="images/toggler-icon.svg" alt="">
+            </button>
+            <div class="collapse navbar-collapse" id="collapsibleNavId">
+                <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Link</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownId">
+                            <a class="dropdown-item" href="#">Action 1</a>
+                            <a class="dropdown-item" href="#">Action 2</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <main class="content-area">
+            <div class="search-bar col-md-6 mx-auto">
+                <h1 class="text-center">Lyrics Search</h1>
+                <div class="search-box my-5">
+                    <input type="text" id="keyword" class="form-control" placeholder="Enter your artist song name">
+                    <button class="btn btn-success search-btn"  onclick="searchSong()">Search</button>
+                </div>
+            </div>
+            <!-- === Simple results === -->
+            <div id="loadingBody" class="d-flex justify-content-center">
+                <div id="search_result" class="">
+                    <p id="p1" class="author lead"> <strong id="title1"> </strong> Album by  <span id="artist1"> </span> <button id="Song1" class="btn btn-success" onclick="lyric1()">Get Lyrics</button></p>
+
+                    <div id="lc1" align="center">
+                        <pre id="lyric1">
+
+                        </pre>
+                    </div>
+
+                    <p id="p2" class="author lead"><strong id="title2"> </strong> Album by  <span id="artist2"></span> <button id="Song2" class="btn btn-success" onclick="lyric2()">Get Lyrics</button></p>
+
+
+                    <div id="lc2" align="center">
+                        <pre id="lyric2">
+
+                        </pre>
+                    </div>
+
+                    <p id="p3" class="author lead"><strong id="title3"> </strong> Album by  <span id="artist3"></span> <button id="Song3" class="btn btn-success" onclick="lyric3()">Get Lyrics</button></p>
+                    <div id="lc3" align="center">
+                        <pre id="lyric3">
+
+                        </pre>
+                    </div>
+
+                    <p  id="p4" class="author lead"><strong id="title4"> </strong> Album by  <span id="artist4"></span> <button id="Song4" class="btn btn-success" onclick="lyric4()">Get Lyrics</button></p>
+                    <div id="lc4" align="center">
+                        <pre id="lyric4">
+
+                        </pre>
+                    </div>
+
+                    <p  id="p5" class="author lead"><strong id="title5"> </strong> Album by  <span id="artist5"></span> <button id="Song5" class="btn btn-success" onclick="lyric5()">Get Lyrics</button></p>
+                    <div id="lc5" align="center">
+                        <pre id="lyric5">
+
+                        </pre>
+                    </div>
+
+                    <p id="p6" class="author lead"><strong id="title6"> </strong> Album by  <span id="artist6"></span> <button id="Song6" class="btn btn-success" onclick="lyric6()">Get Lyrics</button></p>
+                    <div id="lc6" align="center">
+                        <pre id="lyric6">
+
+                        </pre>
+                    </div>
+
+                    <p id="p7" class="author lead"><strong id="title7"> </strong> Album by  <span id="artist7"></span> <button id="Song7" class="btn btn-success" onclick="lyric7()">Get Lyrics</button></p>
+                    <div id="lc7" align="center">
+                        <pre id="lyric7">
+
+                        </pre>
+                    </div>
+
+                    <p  id="p8" class="author lead"><strong id="title8"> </strong> Album by  <span id="artist8"></span> <button id="Song8" class="btn btn-success" onclick="lyric8()">Get Lyrics</button></p>
+                    <div id="lc8" align="center">
+                        <pre id="lyric8">
+
+                        </pre>
+                    </div>
+                   
+                    <p id="p9" class="author lead"><strong id="title9"> </strong> Album by  <span id="artist9"></span> <button id="Song9" class="btn btn-success" onclick="lyric9()">Get Lyrics</button></p>
+                    <div id="lc9" align="center">
+                        <pre id="lyric9" >
+
+                        </pre>
+                    </div>
+
+                    <p id="p10" class="author lead"><strong id="title10"> </strong> Album by  <span id="artist10"></span> <button id="Song10" class="btn btn-success"onclick="lyric10()">Get Lyrics</button></p>
+                    <div id="lc10" align="center">
+                        <pre id="lyric10">
+
+                        </pre>
+                    </div>
+                </div>
+            </div>
+            </div>
+
+
+
+        </main>
+    </div>
+<script>
+
+function searchSong(){
+  
+   let songKeyWord = document.getElementById('keyword').value;
+   fetch(`https://api.lyrics.ovh/suggest/` + `${songKeyWord} `)
+   .then( res => res.json())
+   .then ( data => {
+       
+       for(i = 0; i < 10; i++){
+            const singer = data.data[i].artist.name;
+            const album = data.data[i].album.title;
+        if( i == 0){
+            document.getElementById('title1').innerText = album;
+            document.getElementById('artist1').innerText = singer;
+            document.getElementById('p1').style.display = "block";
+           
+        }
+        else if( i == 1){
+            document.getElementById('title2').innerText = album;
+            document.getElementById('artist2').innerText = singer;
+            document.getElementById('p2').style.display = "block";
+        }
+        else if( i == 2){
+            document.getElementById('title3').innerText = album;
+            document.getElementById('artist3').innerText = singer;
+            document.getElementById('p3').style.display = "block";
+        }
+        else if( i == 3){
+            document.getElementById('title4').innerText = album;
+            document.getElementById('artist4').innerText = singer;
+            document.getElementById('p4').style.display = "block";
+        }
+        else if( i == 4){
+            document.getElementById('title5').innerText = album;
+            document.getElementById('artist5').innerText = singer;
+            document.getElementById('p5').style.display = "block";
+        }
+        else if( i == 5){
+            document.getElementById('title6').innerText = album;
+            document.getElementById('artist6').innerText = singer;
+            document.getElementById('p6').style.display = "block";
+        }
+        else if( i == 6){
+            document.getElementById('title7').innerText = album;
+            document.getElementById('artist7').innerText = singer;
+            document.getElementById('p7').style.display = "block";
+        }
+        else if( i == 7){
+            document.getElementById('title8').innerText = album;
+            document.getElementById('artist8').innerText = singer;
+            document.getElementById('p8').style.display ="block";
+        }
+        else if( i == 8){
+            document.getElementById('title9').innerText = album;
+            document.getElementById('artist9').innerText = singer;
+            document.getElementById('p9').style.display = "block";
+        }
+        else if( i == 9){
+            document.getElementById('title10').innerText = album;
+            document.getElementById('artist10').innerText = singer;
+            document.getElementById('p10').style.display = "block";
+        }
+   
+       
+       
+       }
+       
+      
+   })
+
+}
+
+function lyric1(){
+
+let title = document.getElementById('title1').innerText;
+let artist = document.getElementById('artist1').innerText;
+
+console.log(title);
+console.log(artist);
+
+fetch(`https://api.lyrics.ovh/v1/${artist}/${title}`)
+.then(res => res.json())
+.then(data => {
+    const lyrics = data.lyrics;
+    document.getElementById('lyric1').innerText = lyrics;
+})
+}
+
+function lyric2(){
+
+let title = document.getElementById('title2').innerText;
+let artist = document.getElementById('artist2').innerText;
+
+console.log(title);
+console.log(artist);
+
+fetch(`https://api.lyrics.ovh/v1/${artist}/${title}`)
+.then(res => res.json())
+.then(data => {
+    const lyrics = data.lyrics;
+    document.getElementById('lyric2').innerText = lyrics;
+})
+}
+
+
+function lyric3(){
+
+let title = document.getElementById('title3').innerText;
+let artist = document.getElementById('artist3').innerText;
+
+console.log(title);
+console.log(artist);
+
+fetch(`https://api.lyrics.ovh/v1/${artist}/${title}`)
+.then(res => res.json())
+.then(data => {
+    const lyrics = data.lyrics;
+    document.getElementById('lyric3').innerText = lyrics;
+})
+}
+
+
+
+function lyric4(){
+
+let title = document.getElementById('title4').innerText;
+let artist = document.getElementById('artist4').innerText;
+
+console.log(title);
+console.log(artist);
+
+fetch(`https://api.lyrics.ovh/v1/${artist}/${title}`)
+.then(res => res.json())
+.then(data => {
+    const lyrics = data.lyrics;
+    document.getElementById('lyric4').innerText = lyrics;
+})
+}
+
+
+
+
+function lyric5(){
+
+let title = document.getElementById('title5').innerText;
+let artist = document.getElementById('artist5').innerText;
+
+console.log(title);
+console.log(artist);
+
+fetch(`https://api.lyrics.ovh/v1/${artist}/${title}`)
+.then(res => res.json())
+.then(data => {
+    const lyrics = data.lyrics;
+    document.getElementById('lyric5').innerText = lyrics;
+})
+}
+
+function lyric6(){
+
+let title = document.getElementById('title6').innerText;
+let artist = document.getElementById('artist6').innerText;
+
+console.log(title);
+console.log(artist);
+
+fetch(`https://api.lyrics.ovh/v1/${artist}/${title}`)
+.then(res => res.json())
+.then(data => {
+    const lyrics = data.lyrics;
+    document.getElementById('lyric6').innerText = lyrics;
+})
+}
+
+
+function lyric7(){
+
+let title = document.getElementById('title7').innerText;
+let artist = document.getElementById('artist7').innerText;
+
+console.log(title);
+console.log(artist);
+
+fetch(`https://api.lyrics.ovh/v1/${artist}/${title}`)
+.then(res => res.json())
+.then(data => {
+    const lyrics = data.lyrics;
+    document.getElementById('lyric7').innerText = lyrics;
+})
+}
+
+function lyric8(){
+
+let title = document.getElementById('title8').innerText;
+let artist = document.getElementById('artist8').innerText;
+
+console.log(title);
+console.log(artist);
+
+fetch(`https://api.lyrics.ovh/v1/${artist}/${title}`)
+.then(res => res.json())
+.then(data => {
+    const lyrics = data.lyrics;
+    document.getElementById('lyric8').innerText = lyrics;
+})
+}
+
+
+function lyric9(){
+
+let title = document.getElementById('title9').innerText;
+let artist = document.getElementById('artist9').innerText;
+
+console.log(title);
+console.log(artist);
+
+fetch(`https://api.lyrics.ovh/v1/${artist}/${title}`)
+.then(res => res.json())
+.then(data => {
+    const lyrics = data.lyrics;
+    document.getElementById('lyric9').innerText = lyrics;
+})
+}
+
+
+function lyric10(){
+
+let title = document.getElementById('title10').innerText;
+let artist = document.getElementById('artist10').innerText;
+
+console.log(title);
+console.log(artist);
+
+fetch(`https://api.lyrics.ovh/v1/${artist}/${title}`)
+.then(res => res.json())
+.then(data => {
+    const lyrics = data.lyrics;
+    document.getElementById('lyric10').innerText = lyrics;
+})
+}
+
+
+
+</script>
+
+
+
+
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+    <!-- Custom Script Here -->
+
+</body>
+
+</html>
